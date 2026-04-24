@@ -1,8 +1,19 @@
 <?php
 
+use App\Http\Controllers\KategoriakController;
+use App\Http\Controllers\TevekenysegekController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/user', function (Request $request) {
     return $request->user();
 })->middleware('auth:sanctum');
+
+Route::get('/tevekenysegek', [TevekenysegekController::class, 'index']);
+Route::get('/tevekenysegek/kategoria/{id}',[TevekenysegekController::class,'tevekenysegekKategoriaval']);
+
+Route::post('/tevekenyseg',[TevekenysegekController::class,'store']);
+Route::delete('/tevekenyseg/{id}',[TevekenysegekController::class,'destroy']);
+Route::put('/tevekenyseg/{id}',[TevekenysegekController::class,'update']);
+
+Route::get('/kategoriak', [KategoriakController::class, 'index']);
